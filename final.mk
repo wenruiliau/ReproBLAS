@@ -36,11 +36,11 @@ ifneq ($(strip $(call get_subtree,INSTALL_INC,$(TOP))),)
 	$(INSTALL_DATA) $^ $(INC_DIR)
 endif
 
-install-doc: $(call get_subtree,INSTALL_DOC,$(TOP))
-	$(INSTALL) -d $(DOC_DIR)
-ifneq ($(strip $(call get_subtree,INSTALL_DOC,$(TOP))),)
-	$(INSTALL_DATA) $^ $(DOC_DIR)
-endif
+# install-doc: $(call get_subtree,INSTALL_DOC,$(TOP))
+# 	$(INSTALL) -d $(DOC_DIR)
+# ifneq ($(strip $(call get_subtree,INSTALL_DOC,$(TOP))),)
+# 	$(INSTALL_DATA) $^ $(DOC_DIR)
+# endif
 
 # tunes
 tune:# update

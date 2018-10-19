@@ -1,0 +1,11 @@
+{
+  "vectorization": "AVX",
+  "dimaxindex": 51,
+  "simaxindex": 20,
+  "dimaxfold": 52,
+  "simaxfold": 21,
+  "didefaultfold": 3,
+  "sidefaultfold": 3,
+  "diendurance": 2048,
+  "siendurance": 512
+}

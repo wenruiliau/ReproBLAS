@@ -62,6 +62,7 @@ int main(int argc, char** argv){
   for(int i = 0; i < n; i++){
     x_shuffled[i] = x[i];
   }
+  
   double t;
   int r;
   for(int i = 0; i < n; i++){
