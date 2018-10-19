@@ -6,7 +6,7 @@ MPILDC = $(MPICC)
 
 #OMP_FLAG = -fopenmp
 
-examples = sum_sine
+examples = serial_mat_vect
 omp_examples = 
 mpi_examples = 
 
