@@ -5,6 +5,7 @@
 #include <binned.h>
 #include <binnedBLAS.h>
 #include <reproBLAS.h>
+#include <time.h>
 
 static struct timeval start;
 static struct timeval end;
@@ -193,23 +194,24 @@ int main(int argc, char** argv){
 
 
   //Run the test case 10 times to ensure that reproducible library is working well
-  printf("We will now be shuffling and running the test 10 times to ensure reproducibility\n");
+  printf("\nWe will now be shuffling and running the test 10 times to ensure reproducibility\n");
+  printf("%15s : Time (s) : |Sum - Sum of Shuffled| = ?\n", "Sum Method");
   for (int j = 0; j < 10; j++){
-    tic();
+    tic(); 
     for(int i = 0; i < n; i++){
       r = rand();
       t = x_shuffled[i];
       x_shuffled[i] = x_shuffled[i + (r % (n - i))];
       x_shuffled[i + (r % (n - i))] = t;
-  }
+  	};
     sum_shuffled = reproBLAS_dsum(n, x_shuffled, 1);
     elapsed_time = toc();
     //calculate the difference between sum and sum_shuffled
     double diff = fabs(sum - sum_shuffled);
     if (diff == 0) {
-      printf("Run %d : %15s : %-8g : |%.17e - %.17e| = %g\n", j, "reproBLAS_dsum", elapsed_time, sum, sum_shuffled, diff);
+      printf("%15s (Run %d) : %-8g : |%.17e - %.17e| = %g\n",  "reproBLAS_dsum", j , elapsed_time, sum, sum_shuffled, diff);
     } else {
-      printf("Run %d : %15s : %-8g : |%.17e - %.17e| = %g | ERROR! sum - sum_shuffled = %g != 0, reproducible library is not installed correctly\n", j, "reproBLAS_dsum", elapsed_time, sum, sum_shuffled, diff, diff);
+      printf("%15s (Run %d) : %-8g : |%.17e - %.17e| = %g | ERROR! sum - sum_shuffled = %g != 0, reproducible library is not installed correctly\n", "reproBLAS_dsum", j, elapsed_time, sum, sum_shuffled, diff, diff);
     }
   }
 
